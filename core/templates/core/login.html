@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% block title %}Entrar — BiblioMatch{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto py-4 sm:py-8">
+  <div class="card p-6 sm:p-8 tape">
+    <p class="tile w-14 h-14 mx-auto text-white" style="background:#c98ba0">{% include 'core/partials/icon.html' with name='book' cls='w-6 h-6' %}</p>
+    <div class="text-center mt-4"><span class="eyebrow">welcome back ★</span></div>
+    <h1 class="font-display font-bold text-2xl tracking-tight text-center mt-3 text-[#4d3a44]">Bem-vindx de volta!!</h1>
+    <p class="text-sm font-bold text-slate-500 text-center mt-1 mb-6">entra p/ ver teus matches ♥ sentimos tua falta!</p>
+    <form method="post" class="space-y-4" novalidate>{% csrf_token %}
+      {% for f in form %}<div><label class="flabel" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</div>{% endfor %}
+      {% if form.errors %}<p class="text-xs font-bold bg-[#f6d9d4] text-[#8f3a32] border-2 border-[#4d3a44] rounded-md px-3.5 py-2.5">Usuário ou senha inválidos. Verifique e tente novamente.</p>{% endif %}
+      <button class="btn-primary w-full !py-3">Entrar</button>
+    </form>
+    <p class="text-sm text-center mt-6 text-slate-500">Ainda não possui conta? <a href="{% url 'cadastro' %}" class="font-bold text-indigo-500 hover:text-indigo-600">Cadastre-se</a></p>
+  </div>
+</div>
+{% endblock %}
